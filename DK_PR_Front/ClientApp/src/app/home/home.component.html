@@ -1,11 +1,15 @@
 <h1>Welcome to our posting-page!</h1>
 
 
-<div class="input-group mb-3">
+<!--<div class="input-group mb-3">
   <input type="text" class="form-control" placeholder="Rezept nach Name, Zutat oder Nummer suchen..." aria-label="postMood" aria-describedby="basic-addon2" [(ngModel)]="searchAny" (input)="searchForAny()">
-</div>
+</div>-->
 
 
 <div>
-  <!--<emoji-mart title="Pick your emoji…" emoji="point_up"></emoji-mart>-->
+  <!--<emoji-mart title="Pick your emoji…" emoji="point_up"></emoji-mart>
+  <emoji-mart set="emojione"></emoji-mart>-->
+  <emoji-mart title="Pick your emoji…" (emojiClick)="addEmoji($event)"></emoji-mart>
+  <!--<emoji-mart [style]="{ position: 'absolute', bottom: '20px', right: '20px' }"></emoji-mart>
+  <emoji-mart [i18n]="{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }"></emoji-mart>-->
 </div>

@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
+  //public openPopup: Function;
 
+  //setPopupAction(fn: any) {
+  //  this.openPopup = fn;
+  //}
 }

@@ -1,0 +1,22 @@
+
+
+  <form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Enter your user name</label>
+      <input type="text" class="form-control" id="username" placeholder="user name" [(ngModel)]="userName" name="name">
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputPassword1">Enter your password</label>
+      <input type="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="password" name="password">
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputPassword1">Enter your password again</label>
+      <input type="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="passwordAgain" name="passwordAgain">
+    </div>
+
+    <button type="submit" class="btn btn-primary" (click)="checkUserData()">createUser</button>
+
+  </form>
+

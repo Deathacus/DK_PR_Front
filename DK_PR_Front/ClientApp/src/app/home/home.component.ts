@@ -11,4 +11,4 @@ export class HomeComponent {
   //setPopupAction(fn: any) {
   //  this.openPopup = fn;
   //}
-}
+} //Hallo Luki

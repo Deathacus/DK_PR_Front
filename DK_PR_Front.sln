@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DK_PR_Front", "DK_PR_Front\DK_PR_Front.csproj", "{F02F5397-BF88-4ECA-9A5F-5843C27DFCCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neo4jClientDriver", "..\..\..\..\..\..\..\..\Downloads\WriteNeo4jDatabase\Neo4jClientDriver\Neo4jClientDriver.csproj", "{74F5F456-BF80-4C9B-97B7-FE8AF01498B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WriteNeo4jDatabase", "..\..\..\..\..\..\..\..\Downloads\WriteNeo4jDatabase\WriteNeo4jDatabase\WriteNeo4jDatabase.csproj", "{9852B01B-2E86-4EF9-9CD6-2A6D7E9D78D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{F02F5397-BF88-4ECA-9A5F-5843C27DFCCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F02F5397-BF88-4ECA-9A5F-5843C27DFCCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F02F5397-BF88-4ECA-9A5F-5843C27DFCCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74F5F456-BF80-4C9B-97B7-FE8AF01498B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74F5F456-BF80-4C9B-97B7-FE8AF01498B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74F5F456-BF80-4C9B-97B7-FE8AF01498B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74F5F456-BF80-4C9B-97B7-FE8AF01498B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9852B01B-2E86-4EF9-9CD6-2A6D7E9D78D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9852B01B-2E86-4EF9-9CD6-2A6D7E9D78D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9852B01B-2E86-4EF9-9CD6-2A6D7E9D78D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9852B01B-2E86-4EF9-9CD6-2A6D7E9D78D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

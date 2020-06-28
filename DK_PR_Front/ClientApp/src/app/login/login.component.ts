@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import { userService } from '../service/userService';
 
 
 
@@ -13,13 +14,12 @@ import { Router } from '@angular/router';
 
 
 export class LoginComponent implements OnInit {
-  constructor(private router: Router) { }
+  constructor(private router: Router, public logedInUser: userService) { }
 
   public allUsers: User[] = [];
   public userName: string = "";
   public password: string = "";
 
-  public logedInUser: User = undefined;
 
 
   ngOnInit() {
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     for (let u of this.allUsers) {
       if (u.name === this.userName) {
         if (this.password === u.password) {
-          this.logedInUser = u;
+          this.logedInUser.logedInUser= u;
           userExists = true;
           alert("Loged in succesfully!");
           this.router.navigateByUrl('');

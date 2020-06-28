@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DK_PR_Front", "DK_PR_Front\DK_PR_Front.csproj", "{F02F5397-BF88-4ECA-9A5F-5843C27DFCCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DK_PR_Front", "DK_PR_Front\DK_PR_Front.csproj", "{F02F5397-BF88-4ECA-9A5F-5843C27DFCCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neo4jClientDriver", "..\..\..\..\..\..\..\..\Downloads\WriteNeo4jDatabase\Neo4jClientDriver\Neo4jClientDriver.csproj", "{74F5F456-BF80-4C9B-97B7-FE8AF01498B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neo4jClientDriver", "..\..\Downloads\WriteNeo4jDatabase\Neo4jClientDriver\Neo4jClientDriver.csproj", "{74F5F456-BF80-4C9B-97B7-FE8AF01498B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WriteNeo4jDatabase", "..\..\..\..\..\..\..\..\Downloads\WriteNeo4jDatabase\WriteNeo4jDatabase\WriteNeo4jDatabase.csproj", "{9852B01B-2E86-4EF9-9CD6-2A6D7E9D78D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WriteNeo4jDatabase", "..\..\Downloads\WriteNeo4jDatabase\WriteNeo4jDatabase\WriteNeo4jDatabase.csproj", "{9852B01B-2E86-4EF9-9CD6-2A6D7E9D78D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

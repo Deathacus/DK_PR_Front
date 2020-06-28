@@ -6,8 +6,13 @@
   <button ></button>
 </div>
 
+<div *ngIf="logedInUser === null || logedInUser === undefined">
 
-<div>
+  <h1>Please Log In to start posting emojis</h1>
+
+</div>
+
+<div *ngIf="logedInUser !== null && logedInUser !== undefined">
   <!--<emoji-mart title="Pick your emoji…" emoji="point_up"></emoji-mart>
   <emoji-mart set="emojione"></emoji-mart>-->
   <emoji-mart title="Pick your emoji…" (emojiClick)="select($event)"></emoji-mart>

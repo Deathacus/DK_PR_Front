@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { userService } from './service/userService';
 //import { EmojiModule } from 'angular-emoji/dist';
 //import { EmojiPickerModule } from 'ng-emoji-picker';
 //import { NgxEmojiPickerModule } from 'ngx-emoji-picker';
@@ -35,7 +36,7 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
       { path: 'registration', component: RegistrationComponent },
     ])
   ],
-  providers: [],
+  providers: [userService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

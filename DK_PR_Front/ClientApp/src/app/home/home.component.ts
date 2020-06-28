@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from '../models/user';
+import { userService } from '../service/userService';
 
 
 @Component({
@@ -8,9 +9,14 @@ import { User } from '../models/user';
 })
 export class HomeComponent {
 
-  constructor() {}
+  constructor(public logedInUserService: userService) { }
 
-  public logedInUser: User = undefined;
+  public logedInUser: User;
+
+  ngOnInit() {
+    this.logedInUser = this.logedInUserService.logedInUser;
+    console.log("LogedInUser is now: " + this.logedInUserService.logedInUser)
+  }
 
   public userPicked: any;
 
@@ -23,4 +29,4 @@ export class HomeComponent {
 
   public postIt() { }
 
-} //Hallo Luki
+} 

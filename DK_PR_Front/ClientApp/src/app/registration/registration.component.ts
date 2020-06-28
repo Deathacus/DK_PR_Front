@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
+import { userService } from '../service/userService';
 
 
 
@@ -13,7 +14,7 @@ import { User } from '../models/user';
 
 
 export class RegistrationComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router, public logedInUser: userService) { }
 
   public allUsers: User[] = [];
   public userName: string = "";
@@ -21,7 +22,6 @@ export class RegistrationComponent {
   public passwordAgain: string = "";
   public userOkay: boolean = false;
   public newUser: User = new User();
-  public logedInUser: User;
 
   ngOnInit() {
 
@@ -88,8 +88,9 @@ export class RegistrationComponent {
           console.log("boolean" + this.userOkay);
 
           alert('Your user is now registrated!');
-          this.logedInUser = new User();
-          this.logedInUser.setUser(3, this.userName, this.password);
+          let newUser = new User();
+          newUser.setUser(3, this.userName, this.password);
+          this.logedInUser.logedInUser = newUser;
           this.router.navigateByUrl('');
         }
       }

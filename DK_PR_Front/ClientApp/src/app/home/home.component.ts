@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from '../models/user';
 
 
 @Component({
@@ -6,9 +7,20 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
-  //public openPopup: Function;
 
-  //setPopupAction(fn: any) {
-  //  this.openPopup = fn;
-  //}
+  constructor() {}
+
+  public logedInUser: User = undefined;
+
+  public userPicked: any;
+
+
+  public select($event) {
+    this.userPicked = $event.emoji;
+    console.log($event);
+    console.log(this.userPicked);
+  }
+
+  public postIt() { }
+
 } //Hallo Luki

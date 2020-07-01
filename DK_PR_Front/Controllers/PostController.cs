@@ -33,5 +33,12 @@ namespace DK_PR_Front.Controllers
             if (post == null) return NotFound();
             else return Ok(post);
         }
+
+        [HttpPost]
+        public ActionResult<Post> Create(Post post)
+        {
+            _postService.Create(post);
+            return CreatedAtRoute("api/post", new { username = post.PostId }, post);
+        }
     }
 }

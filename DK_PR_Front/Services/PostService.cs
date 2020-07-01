@@ -24,6 +24,12 @@ namespace DK_PR_Front.Services
 
         public Post Get(string userName) => _post.Find<Post>(post => post.UserName == userName).FirstOrDefault();
 
+        public Post Create(Post post)
+        {
+            _post.InsertOne(post);
+            return post;
+        }
+
         //public Recipe Get(int nr)
         //{
         //    return _recipes.Find<Recipe>(recipe => recipe.Nr == nr).FirstOrDefault();

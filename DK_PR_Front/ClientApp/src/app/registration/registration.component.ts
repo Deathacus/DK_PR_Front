@@ -14,7 +14,7 @@ import { UserService } from '../service/user.service';
 
 
 export class RegistrationComponent {
-  constructor(private router: Router, public logedInUser: UserService) { }
+  constructor(private router: Router, public logedInUser: UserService, private userService: UserService) { }
 
   public allUsers: User[] = [];
   public userName: string = "";
@@ -90,7 +90,7 @@ export class RegistrationComponent {
           alert('Your user is now registrated!');
           let newUser = new User();
           newUser.setUser(this.userName, this.password);
-          this.logedInUser.logedInUser = newUser;
+          this.userService.createUser(newUser);
           this.router.navigateByUrl('');
         }
       }

@@ -10,7 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
-import { userService } from './service/userService';
+import { UserService } from './service/user.service';
+import { PostService } from './service/post.service';
+import { AngularNeo4jModule } from 'angular-neo4j';
 //import { EmojiModule } from 'angular-emoji/dist';
 //import { EmojiPickerModule } from 'ng-emoji-picker';
 //import { NgxEmojiPickerModule } from 'ngx-emoji-picker';
@@ -27,6 +29,7 @@ import { userService } from './service/userService';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    AngularNeo4jModule,
     //NgxEmojiPickerModule,
     //EmojiPickerModule,
     PickerModule,
@@ -36,7 +39,10 @@ import { userService } from './service/userService';
       { path: 'registration', component: RegistrationComponent },
     ])
   ],
-  providers: [userService],
+  providers: [
+    UserService,
+    PostService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

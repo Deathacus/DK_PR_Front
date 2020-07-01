@@ -1,14 +1,12 @@
 
 
 export class User {
-  public id: number = 0;
-  public name: string = "";
+  public username: string = "";
   public password: string = "";
 
 
-  public setUser(id: number, name: string, password: string) {
-    this.id = id;
-    this.name = name;
+  public setUser(username: string, password: string) {
+    this.username = username;
     this.password = password;
   }
 }

@@ -27,6 +27,7 @@ namespace DK_PR_Front
             services.Configure<PostDatabaseSettings>(Configuration.GetSection(nameof(PostDatabaseSettings)));
             services.AddSingleton<IPostDatabaseSettings>(sp => sp.GetRequiredService<IOptions<PostDatabaseSettings>>().Value);
             services.AddSingleton<PostService>();
+            services.AddSingleton<Neo4jService>();
 
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
-import { userService } from '../service/userService';
+import { UserService } from '../service/user.service';
 
 
 
@@ -14,7 +14,7 @@ import { userService } from '../service/userService';
 
 
 export class RegistrationComponent {
-  constructor(private router: Router, public logedInUser: userService) { }
+  constructor(private router: Router, public logedInUser: UserService) { }
 
   public allUsers: User[] = [];
   public userName: string = "";
@@ -25,24 +25,24 @@ export class RegistrationComponent {
 
   ngOnInit() {
 
-    this.userName = "";
-    this.password = "";
+    //this.userName = "";
+    //this.password = "";
 
-    let user1: User = new User();
+    //let user1: User = new User();
 
-    user1.setUser(1, "Lukas", "1234!");
+    //user1.setUser(1, "Lukas", "1234!");
 
-    //user1.id = 1;
-    //user1.name = "Lukas";
-    //user1.password = "1234!";
+    ////user1.id = 1;
+    ////user1.name = "Lukas";
+    ////user1.password = "1234!";
 
-    let user2: User = new User();
-    user2.id = 2;
-    user2.name = "Sara";
-    user2.password = "Sara123$";
+    //let user2: User = new User();
+    //user2.id = 2;
+    //user2.name = "Sara";
+    //user2.password = "Sara123$";
 
-    this.allUsers.push(user1);
-    this.allUsers.push(user2);
+    //this.allUsers.push(user1);
+    //this.allUsers.push(user2);
     console.log(this.allUsers);
   }
 
@@ -51,7 +51,7 @@ export class RegistrationComponent {
     let userOkay = true;
 
     for (let u of this.allUsers) {
-      if (this.userName === u.name) {
+      if (this.userName === u.username) {
         alert("Username already exists! Please choose another name");
         this.userName = "";
         this.password = "";
@@ -89,7 +89,7 @@ export class RegistrationComponent {
 
           alert('Your user is now registrated!');
           let newUser = new User();
-          newUser.setUser(3, this.userName, this.password);
+          newUser.setUser(this.userName, this.password);
           this.logedInUser.logedInUser = newUser;
           this.router.navigateByUrl('');
         }

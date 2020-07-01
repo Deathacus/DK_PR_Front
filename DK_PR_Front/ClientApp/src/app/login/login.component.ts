@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
-import { userService } from '../service/userService';
+import { UserService } from '../service/user.service';
 
 
 
@@ -14,9 +14,10 @@ import { userService } from '../service/userService';
 
 
 export class LoginComponent implements OnInit {
-  constructor(private router: Router, public logedInUser: userService) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   public allUsers: User[] = [];
+  public logedInUser: User;
   public userName: string = "";
   public password: string = "";
 
@@ -25,51 +26,47 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.userName = "";
     this.password = "";
+    
 
-    let user1: User = new User();
+    this.userService.getAllUsers().toPromise().then(u => {
+      this.allUsers = u;
+      console.log(this.allUsers.length);
+    });
 
-    user1.setUser(1, "Lukas", "1234!");
-
-    //user1.id = 1;
-    //user1.name = "Lukas";
-    //user1.password = "1234!";
-
-    let user2: User = new User();
-    user2.id = 2;
-    user2.name = "Sara";
-    user2.password = "Sara123$";
-
-    this.allUsers.push(user1);
-    this.allUsers.push(user2);
-    console.log(this.allUsers);
+    console.log(this.allUsers.length);
     
   }
 
 
   public checkUserData() {
-    let userExists = false;
     console.log(this.allUsers);
 
     for (let u of this.allUsers) {
-      if (u.name === this.userName) {
+      console.log("Eingabe: " + this.userName);
+      console.log("Eingabe: " + this.password);
+      console.log("ArrayName: " + u.username);
+      console.log("ArrayPw: " + u.password);
+      if (u.username === this.userName) {
         if (this.password === u.password) {
-          this.logedInUser.logedInUser= u;
-          userExists = true;
-          alert("Loged in succesfully!");
+          this.userService.logedInUser = u;
+          console.log("eingeloggt ist: " + this.userService.logedInUser);
+          alert("Login in succesfully!");
           this.router.navigateByUrl('');
           break;
         }
         else {
-          this.password = "";
-          this.userName = "";
-          userExists = true;
           alert('Password is not correct!');
+          break;
         }
       }
       else {
         alert('Sorry this user does not exist!');
       }
     }
+    console.log(this.userName);
+    console.log(this.password);
+    this.password = "";
+    this.userName = "";
   }
 
 }

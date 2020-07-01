@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { userService } from '../service/userService';
+import { UserService } from '../service/user.service';
 import { User } from '../models/user';
 
 @Component({
@@ -8,7 +8,7 @@ import { User } from '../models/user';
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
-  constructor(public logedInUserService: userService) { }
+  constructor(public logedInUserService: UserService) { }
 
   public logedInUser: User;
   //ngOnInit() {

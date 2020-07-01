@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { User } from '../models/user';
-import { userService } from '../service/userService';
+import { UserService } from '../service/user.service';
+import { PostService } from '../service/post.service';
+import { Post } from '../models/post';
 
 
 @Component({
@@ -8,13 +10,16 @@ import { userService } from '../service/userService';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
+  public allPosts: Post[];
 
-  constructor(public logedInUserService: userService) { }
+  constructor(public logedInUserService: UserService, public postService: PostService ) { }
 
   public logedInUser: User;
+  public searchPostsByUserName: string;
 
   ngOnInit() {
     this.logedInUser = this.logedInUserService.logedInUser;
+    this.getAllPosts();
     console.log("LogedInUser is now: " + this.logedInUserService.logedInUser)
   }
 
@@ -29,4 +34,8 @@ export class HomeComponent {
 
   public postIt() { }
 
+
+  public getAllPosts() {
+    this.postService.getAllPosts().toPromise().then(p => this.allPosts = p);
+  }
 } 

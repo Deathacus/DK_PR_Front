@@ -6,6 +6,7 @@ namespace DK_PR_Front.Models
 {
     public class User
     {
+        public User() { }
         public User(string username, string password)
         {
             Username = username;

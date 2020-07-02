@@ -30,18 +30,17 @@ export class LoginComponent implements OnInit {
 
     this.userService.getAllUsers().toPromise().then(u => {
       this.allUsers = u;
-      console.log(this.allUsers.length);
+      console.log(this.allUsers[1].username);
     });
-
-    console.log(this.allUsers.length);
     
   }
 
 
   public checkUserData() {
     console.log(this.allUsers);
-
+    let count: number = 0;
     for (let u of this.allUsers) {
+      count++;
       console.log("Eingabe: " + this.userName);
       console.log("Eingabe: " + this.password);
       console.log("ArrayName: " + u.username);
@@ -59,10 +58,10 @@ export class LoginComponent implements OnInit {
           break;
         }
       }
-      else {
+      else if (this.allUsers.length === count)
         alert('Sorry this user does not exist!');
-      }
     }
+    
     console.log(this.userName);
     console.log(this.password);
     this.password = "";

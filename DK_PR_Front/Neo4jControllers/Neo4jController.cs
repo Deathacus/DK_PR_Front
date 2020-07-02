@@ -12,6 +12,8 @@ namespace DK_PR_Front.Neo4jControllers
         public void CreateUserController(string username, string password)
         {
             string query = "CREATE (a:User {Username: '" + username + "', Password: '" + password + "'})";
+
+
             using (var session = Neo4jConfigClass.driver.Session())
             {
                 session.Run(query);

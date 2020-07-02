@@ -29,7 +29,7 @@ namespace DK_PR_Front.Controllers
         public ActionResult<User> Create(User user)
         {
             _neoService.CreateUser(user.Username, user.Password);
-            return CreatedAtRoute("api/user/{username}", new { username = user.Username}, user);
+            return Ok();
         }
     }
 }

@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 
+
 @Injectable()
 export class UserService
 {
@@ -16,9 +17,14 @@ export class UserService
     return this.http.get<User[]>('api/user');
   }
 
-  public createUser(user: User) {
+  public createUser(user: User): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .post<User>('api/user', user)
+        .toPromise().then(result => resolve(true))
+        .catch(reason => reject(reason));
+    });
     
-    this.http.post<User>('api/user', user);
   }
 
 

@@ -9,9 +9,9 @@ namespace DK_PR_Front.Neo4jConfig
     {
         public static IDriver driver { get; set; }
 
-        public Neo4jConfigClass(string uri, string user, string password)
+        public Neo4jConfigClass(string uri, string username, string password)
         {
-            var connection = GraphDatabase.Driver(uri, AuthTokens.Basic(user, password));
+            var connection = GraphDatabase.Driver(uri, AuthTokens.Basic(username, password));
             driver = connection;
         }
 

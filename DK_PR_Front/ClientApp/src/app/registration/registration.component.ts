@@ -14,7 +14,7 @@ import { UserService } from '../service/user.service';
 
 
 export class RegistrationComponent {
-  constructor(private router: Router, public logedInUser: UserService, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService ) { }
 
   public allUsers: User[] = [];
   public userName: string = "";
@@ -24,25 +24,13 @@ export class RegistrationComponent {
   public newUser: User = new User();
 
   ngOnInit() {
+    this.userName = "";
+    this.password = "";
+    this.passwordAgain = "";
 
-    //this.userName = "";
-    //this.password = "";
-
-    //let user1: User = new User();
-
-    //user1.setUser(1, "Lukas", "1234!");
-
-    ////user1.id = 1;
-    ////user1.name = "Lukas";
-    ////user1.password = "1234!";
-
-    //let user2: User = new User();
-    //user2.id = 2;
-    //user2.name = "Sara";
-    //user2.password = "Sara123$";
-
-    //this.allUsers.push(user1);
-    //this.allUsers.push(user2);
+    this.userService.getAllUsers().toPromise().then(u => {
+      this.allUsers = u;
+    });
     console.log(this.allUsers);
   }
 
@@ -87,11 +75,18 @@ export class RegistrationComponent {
           this.userOkay = true;
           console.log("boolean" + this.userOkay);
 
-          alert('Your user is now registrated!');
+          
           let newUser = new User();
           newUser.setUser(this.userName, this.password);
-          this.userService.createUser(newUser);
-          this.router.navigateByUrl('');
+          this.userService.logedInUser = newUser;
+          this.userService.createUser(newUser).then(result => {
+            if (result) {
+              alert('Your user is now registrated!');
+              this.router.navigateByUrl('');
+            }
+            else
+              alert('registration failed');
+          });
         }
       }
       else {
@@ -101,9 +96,9 @@ export class RegistrationComponent {
         alert('Your entered passwords are not the same');
       }
     }
-
-    console.log("name: " + this.userName);
-    console.log("password: " + this.password);
+    this.userName = "";
+    this.password = "";
+    this.passwordAgain = "";
   }
 
 }

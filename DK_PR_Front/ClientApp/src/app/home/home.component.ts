@@ -17,11 +17,13 @@ export class HomeComponent {
 
   public logedInUser: User;
   public searchPostsByUserName: string;
+  public postedMood: string = "";
 
   ngOnInit() {
     this.logedInUser = this.logedInUserService.logedInUser;
     this.getAllPosts();
     console.log("LogedInUser is now: " + this.logedInUserService.logedInUser)
+
   }
 
   public userPicked: any;
@@ -37,11 +39,11 @@ export class HomeComponent {
 
   public postIt() {
     let newPost = new Post();
-    
+    this.postText = this.postedMood;
     newPost.setPost(this.postText);
     this.postService.createPost(newPost);
     this.router.navigateByUrl('');
-    console.log("posted");
+    console.log("posted:"+ this.postText);
   }
 
 

@@ -2,13 +2,13 @@
 
 
 <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Search for post of a user by it's name" aria-label="postMood" aria-describedby="basic-addon2">
+  <input type="text" class="form-control" placeholder="Search for post of a user by it's name" aria-label="postMood" aria-describedby="basic-addon2" [(ngModel)]="searchedPost">
   <button (click) = "getPostByUserName()">Submit</button>
 </div>
 
 <div class="input-group mb-3">
   <input type="text" class="form-control" placeholder="Post here..." aria-label="postMood" aria-describedby="basic-addon2" [(ngModel)]="postedEmoji">
-  <button ></button>
+  <button >Post</button>
 </div>
 
 <div *ngIf="logedInUser === null || logedInUser === undefined">

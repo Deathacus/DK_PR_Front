@@ -38,7 +38,7 @@ namespace DK_PR_Front.Controllers
         public ActionResult<Post> Create(Post post)
         {
             _postService.Create(post);
-            return CreatedAtRoute("api/post", new { username = post.PostId }, post);
+            return CreatedAtRoute("api/post", new { postId = post.PostId }, post);
         }
     }
 }

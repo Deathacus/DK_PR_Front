@@ -3,6 +3,7 @@ import { User } from '../models/user';
 import { UserService } from '../service/user.service';
 import { PostService } from '../service/post.service';
 import { Post } from '../models/post';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { Post } from '../models/post';
 export class HomeComponent {
   public allPosts: Post[];
 
-  constructor(public logedInUserService: UserService, public postService: PostService ) { }
+  constructor(private router: Router, public logedInUserService: UserService, public postService: PostService ) { }
 
   public logedInUser: User;
   public searchPostsByUserName: string;
@@ -32,7 +33,16 @@ export class HomeComponent {
     console.log(this.userPicked);
   }
 
-  public postIt() { }
+  public postText: string
+
+  public postIt() {
+    let newPost = new Post();
+    
+    newPost.setPost(this.postText);
+    this.postService.createPost(newPost);
+    this.router.navigateByUrl('');
+    console.log("posted");
+  }
 
 
   public getAllPosts() {

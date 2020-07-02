@@ -4,6 +4,7 @@ import { Post } from '../models/post';
 
 @Injectable()
 export class PostService {
+  
   constructor(private http: HttpClient) {
   }
 
@@ -13,5 +14,9 @@ export class PostService {
 
   public getAllPosts() {
     return this.http.get<Post[]>('api/post');
+  }
+
+  public createPost(post: Post) {
+     this.http.post<Post>('api/post', post);
   }
 }

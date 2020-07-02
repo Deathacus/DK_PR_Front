@@ -8,7 +8,7 @@
 
 <div class="input-group mb-3">
   <input type="text" class="form-control" placeholder="Post here..." aria-label="postMood" aria-describedby="basic-addon2" [(ngModel)]="postedEmoji">
-  <button >Post</button>
+  <button (click) ="postIt()">Post</button>
 </div>
 
 <div *ngIf="logedInUser === null || logedInUser === undefined">

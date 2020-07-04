@@ -42,8 +42,9 @@ export class HomeComponent {
 
   public postIt() {
     let newPost = new Post();
-    //let date: Date = new Date();
-    newPost.setPost(this.postText, this.logedInUser.username,"","");
+    let date: Date = new Date();
+
+    newPost.setPost(this.postText, this.logedInUser.username, "",date.toJSON());
     this.postService.createPost(newPost).then(result => {
       if (result) {
         this.router.navigateByUrl('');

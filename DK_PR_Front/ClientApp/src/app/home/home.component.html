@@ -1,28 +1,73 @@
 <h1>Welcome to our posting-page!</h1>
 
 
-<div class="input-group mb-3">
+<div *ngIf="userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined" class="input-group mb-3">
   <input type="text" class="form-control" placeholder="Search for post of a user by it's name" aria-label="postMood" aria-describedby="basic-addon2" [(ngModel)]="searchedPost">
   <button (click) = "getPostByUserName()">Submit</button>
 </div>
 
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Post here..." aria-label="postMood" aria-describedby="basic-addon2" [(ngModel)]="postedMood">
+<div *ngIf="userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined" class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Post here..." aria-label="postMood" aria-describedby="basic-addon2" [(ngModel)]="postText">
   <button (click) ="postIt()">Post</button>
 </div>
 
 <div *ngIf="logedInUser === null || logedInUser === undefined">
 
-  <h1>Please Log In to start posting emojis</h1>
+  <h2>Please Log In to start posting</h2>
 
 </div>
 
-<div *ngIf="logedInUser !== null && logedInUser !== undefined">
+<div *ngIf="userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined">
   <!--<emoji-mart title="Pick your emoji…" emoji="point_up"></emoji-mart>
   <emoji-mart set="emojione"></emoji-mart>-->
-  <emoji-mart title="Pick your emoji…" (emojiClick)="select($event)"></emoji-mart>
+  <emoji-mart title="Pick your emoji…" (emojiClick)="select($event)" ></emoji-mart>
   <!--<emoji-mart [style]="{ position: 'absolute', bottom: '20px', right: '20px' }"></emoji-mart>
   <emoji-mart [i18n]="{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }"></emoji-mart>-->
 </div>
 
+<div *ngIf="userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined" class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>
+          Post Nr
+        </th>
+        <th>
+          Posted Text
+        </th>
+        <th>
+          Posted Emoji
+        </th>
+        <th>
+          Posted By
+        </th>
+        <th>
+          Posted on
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let post of allPosts">
+        <td>
+          {{post.postID}}
+        </td>
+        <td>
+          {{post.postText}}
+        </td>
+        <td>
+          {{post.postEmoji}}
+        </td>
+        <td>
+          {{post.userName}}
+        </td>
+        <td>
+          {{post.date}}
+        </td>
+        <td>
+          <button (click)="flowUser()">Follow user</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 

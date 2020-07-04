@@ -16,7 +16,14 @@ export class PostService {
     return this.http.get<Post[]>('api/post');
   }
 
-  public createPost(post: Post) {
-     this.http.post<Post>('api/post', post);
+  public createPost(post: Post): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .post<Post>('api/post', post)
+        .toPromise()
+        .then(result => resolve(true))
+        .catch(reason => reject(reason));
+    });
+     
   }
 }

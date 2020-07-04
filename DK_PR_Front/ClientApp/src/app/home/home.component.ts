@@ -11,43 +11,50 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
-  public allPosts: Post[];
 
-  constructor(private router: Router, public logedInUserService: UserService, public postService: PostService ) { }
+  constructor(private router: Router, public userService: UserService, public postService: PostService ) { }
 
   public logedInUser: User;
   public searchPostsByUserName: string;
   public postedMood: string = "";
+  public allPosts: Post[];
+  public userPicked: any;
+  public postText: string = "";
 
   ngOnInit() {
-    this.logedInUser = this.logedInUserService.logedInUser;
-    this.getAllPosts();
-    console.log("LogedInUser is now: " + this.logedInUserService.logedInUser)
+    this.logedInUser = this.userService.logedInUser;
+    console.log("LogedInUser is now: " + this.userService.logedInUser)
+    this.postService.getAllPosts().toPromise().then(p => {
+      this.allPosts = p;
+    });
 
   }
 
-  public userPicked: any;
+
 
 
   public select($event) {
     this.userPicked = $event.emoji;
+    this.postText = this.postText + this.userPicked
     console.log($event);
     console.log(this.userPicked);
   }
 
-  public postText: string
-
   public postIt() {
     let newPost = new Post();
-    this.postText = this.postedMood;
-    newPost.setPost(this.postText);
-    this.postService.createPost(newPost);
-    this.router.navigateByUrl('');
-    console.log("posted:"+ this.postText);
+    //let date: Date = new Date();
+    newPost.setPost(this.postText, this.logedInUser.username,"","");
+    this.postService.createPost(newPost).then(result => {
+      if (result) {
+        this.router.navigateByUrl('');
+        console.log("posted:" + this.postText);
+      }
+      else {
+        alert('Your post failed');
+        
+      }
+    });
+
   }
 
-
-  public getAllPosts() {
-    this.postService.getAllPosts().toPromise().then(p => this.allPosts = p);
-  }
 } 

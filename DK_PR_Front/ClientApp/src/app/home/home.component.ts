@@ -47,7 +47,8 @@ export class HomeComponent {
     newPost.setPost(this.postText, this.logedInUser.username, "",date.toJSON());
     this.postService.createPost(newPost).then(result => {
       if (result) {
-        this.router.navigateByUrl('');
+        this.allPosts.push(newPost);
+        this.allPosts = [...this.allPosts];
         console.log("posted:" + this.postText);
       }
       else {

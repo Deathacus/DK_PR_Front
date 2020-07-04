@@ -24,6 +24,21 @@ namespace DK_PR_Front.Services
         {
             return neo4JController.GetUserController();
         }
+
+        public void FollowUser(User user1, User user2)
+        {
+            neo4JController.FollowsUser(user1, user2);
+        }
+
+        public void UnfollowUser(User user1, User user2)
+        {
+            neo4JController.UnfollowsUser(user1, user2);
+        }
+
+        public List<User> GetFollows(User user)
+        {
+            return neo4JController.GetFollows(user);
+        }
     }
 }
 

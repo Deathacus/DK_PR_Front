@@ -28,6 +28,28 @@ export class UserService
     
   }
 
+  public followUser(user: User[]): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .post<User>('api/user/followsUser', user)
+        .toPromise().then(result => resolve(true))
+        .catch(reason => reject(reason));
+    });
+  }
+
+  public unFollowUser(user: User[]): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .post<User>('api/user/unFollowsUser', user)
+        .toPromise().then(result => resolve(true))
+        .catch(reason => reject(reason));
+    });
+  }
+
+  public getFollows() {
+    return this.http.get<User[]>('api/user/getFollows');
+  }
+
 
 
 }

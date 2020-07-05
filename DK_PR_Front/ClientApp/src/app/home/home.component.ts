@@ -60,7 +60,7 @@ export class HomeComponent {
 
   public select($event) {
     this.userPicked = $event.emoji;
-    //this.postText = this.postText + this.userPicked.native;
+    this.postText = this.postText + this.userPicked.native;
     console.log($event);
     console.log(this.userPicked);
     this.pickedEmoji = this.userPicked.native;

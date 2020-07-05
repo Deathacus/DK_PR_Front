@@ -13,6 +13,8 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { UserService } from './service/user.service';
 import { PostService } from './service/post.service';
 import { AngularNeo4jModule } from 'angular-neo4j';
+import { UserpageComponent } from './user/userpage.component';
+
 //import { EmojiModule } from 'angular-emoji/dist';
 //import { EmojiPickerModule } from 'ng-emoji-picker';
 //import { NgxEmojiPickerModule } from 'ngx-emoji-picker';
@@ -23,20 +25,20 @@ import { AngularNeo4jModule } from 'angular-neo4j';
     NavMenuComponent,
     HomeComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    UserpageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     AngularNeo4jModule,
-    //NgxEmojiPickerModule,
-    //EmojiPickerModule,
     PickerModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'registration', component: RegistrationComponent },
+      { path: 'userpage', component: UserpageComponent}
     ])
   ],
   providers: [

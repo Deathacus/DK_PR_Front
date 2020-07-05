@@ -47,10 +47,10 @@
               Posted emoji...
             </th>
             <th>
-              Posted by..
+              Posted on...
             </th>
             <th>
-              Posted on..
+              Posted by...
             </th>
           </tr>
         </thead>
@@ -63,10 +63,10 @@
               {{post.emojiName}}
             </td>
             <td>
-              {{post.userName}}
+              {{post.date}}
             </td>
             <td>
-              {{post.date}}
+              <button (click) ="routToUserpage(post.userName)">{{post.userName}}</button>
             </td>
           </tr>
         </tbody>

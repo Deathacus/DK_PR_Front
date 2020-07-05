@@ -12,6 +12,7 @@ export class UserService
   constructor(private http: HttpClient) { }
 
   public logedInUser: User;
+  public wantToFollow: User;
 
   public getAllUsers() {
     return this.http.get<User[]>('api/user');

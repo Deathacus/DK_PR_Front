@@ -32,5 +32,6 @@ namespace DK_PR_Front.Models
         [BsonElement("PostText")]
         public string PostText { get; set; }
 
+
     }
 }

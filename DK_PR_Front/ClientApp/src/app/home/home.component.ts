@@ -29,6 +29,7 @@ export class HomeComponent {
 
   ngOnInit() {
     this.logedInUser = this.userService.logedInUser;
+    this.userService.wantToFollow = undefined;
     console.log("LogedInUser is now: " + this.userService.logedInUser)
     this.postService
       .getAllPosts()
@@ -116,9 +117,19 @@ export class HomeComponent {
     this.displayEmojis = !this.displayEmojis;
   }
 
-  public deleteSearchingForUserPosts() {
-    this.searchPostsByUserName = "";
-    this.postsOfUser = [...this.postsOfUser];
+  public routToUserpage(userName: string) {
+    let userFound: boolean = false
+    for(let u of this.allUsers) {
+      if (u.username === userName) {
+        this.userService.wantToFollow = u;
+        this.router.navigateByUrl('/userpage');
+        userFound = true;
+        break;
+      }
+    }
+    if (!userFound) {
+      alert('Sorry an Error occoured!');
+    }
   }
 
 } 

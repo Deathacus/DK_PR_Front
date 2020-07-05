@@ -1,0 +1,28 @@
+<h1 *ngIf="userOfPage !== null && userOfPage !== undefined && userOfPage.username !== null && userOfPage.username !== undefined">Wellcome to {{userOfPage.username}}'s page</h1>
+<h1 *ngIf="userOfPage === null || userOfPage === undefined || userOfPage.username === null || userOfPage.username === undefined">Don't rout directly!!!!</h1>
+
+<div *ngIf="(userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined) && (userOfPage !== null && userOfPage !== undefined && userOfPage.username !== null && userOfPage.username !== undefined)" class="content">
+  <h2>Followers of {{userOfPage.username}}</h2>
+  <div class="wrapper">
+    <div class="table-responive tableDesign">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>
+              Followers
+            </th>
+            <th>
+              <button (click)="wantToFollowUser()">Follow {{userOfPage.username}}</button>
+            </th>
+
+          </tr>
+        </thead>
+        <tbody >
+          <tr>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

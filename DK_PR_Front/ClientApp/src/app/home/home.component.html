@@ -2,8 +2,9 @@
 
 
 <div *ngIf="userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined" class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Search for post of a user by it's name" aria-label="postMood" aria-describedby="basic-addon2" [(ngModel)]="searchedPost">
-  <button (click) = "getPostByUserName()">Submit</button>
+  <input type="text" class="form-control" placeholder="Search for post of a user by it's name" aria-label="postMood" aria-describedby="basic-addon2" [(ngModel)]="searchPostsByUserName">
+  <button (click) = "searchForPostOfUser()">Submit</button>
+  <button (click) ="deleteSearchingForUserPosts()">Delete search</button>
 </div>
 
 <div *ngIf="userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined" class="input-group mb-3">
@@ -25,7 +26,7 @@
   <emoji-mart [i18n]="{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }"></emoji-mart>-->
 </div>
 
-<div *ngIf="userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined" class="table-responsive">
+<div *ngIf="userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined && (postOfUser === null || postOfUser === undefined || postsOfUser.length === 0)" class="table-responsive">
   <table class="table">
     <thead>
       <tr>
@@ -48,6 +49,53 @@
     </thead>
     <tbody>
       <tr *ngFor="let post of allPosts">
+        <td>
+          {{post.postID}}
+        </td>
+        <td>
+          {{post.postText}}
+        </td>
+        <td>
+          {{post.postEmoji}}
+        </td>
+        <td>
+          {{post.userName}}
+        </td>
+        <td>
+          {{post.date}}
+        </td>
+        <td>
+          <button (click)="flowUser()">Follow user</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Table which is shown, if a user search for posts of a user -->
+<div *ngIf="userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined && (postsOfUser !== null && postsOfUser !== undefined && postsOfUser.length >  0)" class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>
+          Post Nr
+        </th>
+        <th>
+          Posted Text
+        </th>
+        <th>
+          Posted Emoji
+        </th>
+        <th>
+          Posted By
+        </th>
+        <th>
+          Posted on
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let post of postsOfUser">
         <td>
           {{post.postID}}
         </td>

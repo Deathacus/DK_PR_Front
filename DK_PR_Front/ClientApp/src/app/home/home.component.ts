@@ -15,17 +15,26 @@ export class HomeComponent {
   constructor(private router: Router, public userService: UserService, public postService: PostService ) { }
 
   public logedInUser: User;
-  public searchPostsByUserName: string;
+  public searchPostsByUserName: string = "";
   public postedMood: string = "";
   public allPosts: Post[];
   public userPicked: any;
   public postText: string = "";
+  public postsOfUser: Post[] = [];
+  public allUsers: User[] = [];
 
   ngOnInit() {
     this.logedInUser = this.userService.logedInUser;
     console.log("LogedInUser is now: " + this.userService.logedInUser)
-    this.postService.getAllPosts().toPromise().then(p => {
+    this.postService
+      .getAllPosts()
+      .toPromise()
+      .then(p => {
       this.allPosts = p;
+      }).then( () => {
+        this.userService.getAllUsers().toPromise().then(u => {
+          this.allUsers = u;
+        });
     });
 
   }
@@ -57,6 +66,32 @@ export class HomeComponent {
       }
     });
 
+  }
+
+  public searchForPostOfUser() {
+    this.postsOfUser = [];
+    let userExists = false;
+    for (let u of this.allUsers) {
+      if (u.username === this.searchPostsByUserName) {
+        userExists = true;
+        for (let p of this.allPosts) {
+          if (p.userName === this.searchPostsByUserName) {
+            this.postsOfUser.push(p);
+          }
+        }
+        if (this.postsOfUser.length <= 0)
+          alert("This user doesn't posted anything!");
+        break;
+      }
+    }
+    if (!userExists)
+      alert("This user doesn't exist");
+    
+  }
+
+  public deleteSearchingForUserPosts() {
+    this.searchPostsByUserName = "";
+    this.postsOfUser = [...this.postsOfUser];
   }
 
 } 

@@ -33,22 +33,22 @@ namespace DK_PR_Front.Controllers
         }
 
         [HttpPost]
-        [Route("followsUser")]
+        [Route("followUser")]
         public void followsUser(User[] user)
         {
             _neoService.FollowUser(user);
         }
         [HttpPost]
-        [Route("unFollowsUser")]
+        [Route("unFollowUser")]
         public void unFollowsUser(User[] user)
         {
             _neoService.UnfollowUser(user);
         }
         [HttpGet]
-        [Route("getFollows")]
-        public List<User> getFollows(User user)
+        [Route("api/user/getFollowers")]
+        public List<User> getFollowers(User user)
         {
-            return _neoService.GetFollows(user);
+            return _neoService.GetFollowers(user);
         }
     }
 }

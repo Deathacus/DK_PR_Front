@@ -27,21 +27,21 @@ namespace DK_PR_Front.Services
 
         public void FollowUser(User[] user)
         {
-            User user1 = user[0];
-            User user2 = user[1];
-            neo4JController.FollowsUser(user1, user2);
+            User follower = user[0];
+            User wantToFollow = user[1];
+            neo4JController.FollowersUser(follower, wantToFollow);
         }
 
         public void UnfollowUser(User[] user)
         {
-            User user1 = user[0];
-            User user2 = user[1];
-            neo4JController.UnfollowsUser(user1, user2);
+            User follower = user[0];
+            User wantToFollow = user[1];
+            neo4JController.UnfollowersUser(follower, wantToFollow);
         }
 
-        public List<User> GetFollows(User user)
+        public List<User> GetFollowers(User user)
         {
-            return neo4JController.GetFollows(user);
+            return neo4JController.GetFollowers(user);
         }
     }
 }

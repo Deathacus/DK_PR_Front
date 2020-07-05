@@ -31,7 +31,7 @@ export class UserService
   public followUser(user: User[]): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.http
-        .post<User>('api/user/followsUser', user)
+        .post<User>('api/user/followUser', user)
         .toPromise().then(result => resolve(true))
         .catch(reason => reject(reason));
     });
@@ -40,14 +40,14 @@ export class UserService
   public unFollowUser(user: User[]): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.http
-        .post<User>('api/user/unFollowsUser', user)
+        .post<User>('api/user/unFollowUser', user)
         .toPromise().then(result => resolve(true))
         .catch(reason => reject(reason));
     });
   }
 
-  public getFollows() {
-    return this.http.get<User[]>('api/user/getFollows');
+  public getFollowers(user: User) {
+    return this.http.get<User[]>('api/user/getFollowers/' + user);
   }
 
 

@@ -36,26 +36,26 @@ namespace DK_PR_Front.Neo4jControllers
             }
         }
 
-        public void FollowsUser(User user1, User user2)
+        public void FollowersUser(User follower, User wantToFollow)
         {
             List<User> users = new List<User>();
             using (var session = Neo4jConfigClass.driver.Session())
             {
-                string query = "MATCH (n:User {Name: '" + user1.Username + "'}), (m:User {Name: '" + user2.Username + "'})  CREATE (n) -[r:Follows]-> (m) RETURN n,m,r";
+                string query = "MATCH (n:User {Name: '" + follower.Username + "'}), (m:User {Name: '" + wantToFollow.Username + "'})  CREATE (n) -[r:Follows]-> (m) RETURN n,m,r";
                 var result = session.Run(query);
             }
         }
 
-        public void UnfollowsUser(User user1, User user2)
+        public void UnfollowersUser(User follower, User wantToFollow)
         {
             List<User> users = new List<User>();
             using (var session = Neo4jConfigClass.driver.Session())
             {
-                var result = session.Run("MATCH (n:User {Name: '" + user1.Username + "'}) -[r:Follows]-> (m:User {Name: '" + user2.Username + "'})  DELETE r RETURN n,m,r");
+                var result = session.Run("MATCH (n:User {Name: '" + follower.Username + "'}) -[r:Follows]-> (m:User {Name: '" + wantToFollow.Username + "'})  DELETE r RETURN n,m,r");
             }
         }
 
-        public List<User> GetFollows(User user)
+        public List<User> GetFollowers(User user)
         {
             List<User> users = new List<User>();
             using (var session = Neo4jConfigClass.driver.Session())

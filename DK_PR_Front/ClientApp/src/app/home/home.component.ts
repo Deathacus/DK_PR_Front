@@ -20,6 +20,7 @@ export class HomeComponent {
   public allPosts: Post[] = [];
   public displayPosts: Post[] = [];
   public userPicked: any;
+  public pickedEmoji: string = "";
   public postText: string = "";
   public postsOfUser: Post[] = [];
   public allUsers: User[] = [];
@@ -59,20 +60,25 @@ export class HomeComponent {
 
   public select($event) {
     this.userPicked = $event.emoji;
-    this.postText = this.postText + this.userPicked
+    //this.postText = this.postText + this.userPicked.native;
     console.log($event);
     console.log(this.userPicked);
+    this.pickedEmoji = this.userPicked.native;
+    console.log("native prop: " + this.userPicked.native.toString());
+
   }
 
   public postIt() {
     let newPost = new Post();
     let date: Date = new Date();
 
-    newPost.setPost(this.postText, this.logedInUser.username, "",date.toJSON());
+    newPost.setPost(this.postText, this.logedInUser.username, this.pickedEmoji,date.toJSON());
     this.postService.createPost(newPost).then(result => {
       if (result) {
         this.allPosts.push(newPost);
+        this.displayPosts = this.allPosts;
         this.allPosts = [...this.allPosts];
+        this.displayPosts = [...this.displayPosts];
         console.log("posted:" + this.postText);
       }
       else {

@@ -1,0 +1,50 @@
+.tableDesign {
+  width: 100%;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-top: 17.5px;
+}
+
+.heading {
+  margin-left: 35px;
+}
+
+.inputForm {
+  margin-left: 35px;
+  margin-right: 35px;
+  max-width: 300px;
+  min-width: 30%;
+  margin-top: 17.5px;
+}
+
+.inputBtn {
+  margin-top: 17.5px;
+  margin-right: 45px;
+  margin-bottom: 17.5px;
+  float: right;
+}
+
+.tableBtn {
+  margin-left: 5px;
+  margin-top: 5px;
+  min-width: 105px;
+}
+
+.btnFloat {
+  float: right;
+}
+
+.searchBox {
+  margin-left: 35px;
+  margin-top: 20px;
+}
+
+.content {
+  overflow: auto;
+}
+
+.editButton {
+  border: none;
+  cursor: pointer;
+  background: none;
+}

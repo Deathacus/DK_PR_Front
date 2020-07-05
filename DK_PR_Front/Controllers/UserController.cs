@@ -32,20 +32,20 @@ namespace DK_PR_Front.Controllers
             return Ok();
         }
 
-         [HttpPost]
-        public void followsUser(User user1, User user2)
-        {
-            _neoService.FollowUser(user1, user2);
-        }
-        [HttpPost]
-        public void unFollowsUser(User user1, User user2)
-        {
-            _neoService.UnfollowUser(user1, user2);
-        }
-        [HttpGet]
-        public List<User> getFollows(User user)
-        {
-            return _neoService.GetFollows(user);
-        }
+        // [HttpPost]
+        //public void followsUser(User user1, User user2)
+        //{
+        //    _neoService.FollowUser(user1, user2);
+        //}
+        //[HttpPost]
+        //public void unFollowsUser(User user1, User user2)
+        //{
+        //    _neoService.UnfollowUser(user1, user2);
+        //}
+        //[HttpGet]
+        //public List<User> getFollows(User user)
+        //{
+        //    return _neoService.GetFollows(user);
+        //}
     }
 }

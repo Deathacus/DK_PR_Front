@@ -17,11 +17,13 @@ export class HomeComponent {
   public logedInUser: User;
   public searchPostsByUserName: string = "";
   public postedMood: string = "";
-  public allPosts: Post[];
+  public allPosts: Post[] = [];
+  public displayPosts: Post[] = [];
   public userPicked: any;
   public postText: string = "";
   public postsOfUser: Post[] = [];
   public allUsers: User[] = [];
+  private _searchValue: string = "";
 
   ngOnInit() {
     this.logedInUser = this.userService.logedInUser;
@@ -30,7 +32,8 @@ export class HomeComponent {
       .getAllPosts()
       .toPromise()
       .then(p => {
-      this.allPosts = p;
+        this.allPosts = p;
+        this.displayPosts = p.slice();
       }).then( () => {
         this.userService.getAllUsers().toPromise().then(u => {
           this.allUsers = u;
@@ -39,7 +42,19 @@ export class HomeComponent {
 
   }
 
+  public get searchValue(): string {
+    return this._searchValue;
+  }
 
+  public set searchValue(val: string) {
+    this._searchValue = val;
+    this.performSearch();
+  }
+
+  public performSearch() {
+    this.displayPosts = this.allPosts;
+    this.displayPosts = this.allPosts.filter(p => p.postText.toLowerCase().indexOf(this.searchValue.toLowerCase()) != -1 || p.userName.toLowerCase().indexOf(this.searchValue.toLowerCase()) != -1);
+  }
 
 
   public select($event) {

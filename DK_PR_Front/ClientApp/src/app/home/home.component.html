@@ -2,15 +2,21 @@
 
 
 <div *ngIf="userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined" class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Search for post of a user by it's name" aria-label="postMood" aria-describedby="basic-addon2" [(ngModel)]="searchPostsByUserName">
-  <button (click) = "searchForPostOfUser()">Submit</button>
-  <button (click) ="deleteSearchingForUserPosts()">Delete search</button>
+  <input type="text" class="form-control" placeholder="Post here..." aria-label="postMood" aria-describedby="basic-addon2" [(ngModel)]="postText">
+  <button (click)="postIt()">Post</button>
 </div>
 
-<div *ngIf="userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined" class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Post here..." aria-label="postMood" aria-describedby="basic-addon2" [(ngModel)]="postText">
-  <button (click) ="postIt()">Post</button>
+<div class="searchBox">
+  <div class="col-xs-6">
+    <div class="input-group mb-3" style="padding-top: 32px">
+      <div class="input-group-prepend">
+        <span class="fa fa-search input-group-text" aria-hidden="true" id="basic-addon1"></span>
+      </div>
+      <input type="text" class="form-control" id="searchValue" placeholder="Search for posts by username or posted text..." [(ngModel)]="searchValue" aria-describedby="basic-addon1" style="width: 280px" />
+    </div>
+  </div>
 </div>
+
 
 <div *ngIf="logedInUser === null || logedInUser === undefined">
 
@@ -21,101 +27,52 @@
 <div *ngIf="userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined">
   <!--<emoji-mart title="Pick your emoji…" emoji="point_up"></emoji-mart>
   <emoji-mart set="emojione"></emoji-mart>-->
-  <emoji-mart title="Pick your emoji…" (emojiClick)="select($event)" ></emoji-mart>
+  <emoji-mart title="Pick your emoji…" (emojiClick)="select($event)"></emoji-mart>
   <!--<emoji-mart [style]="{ position: 'absolute', bottom: '20px', right: '20px' }"></emoji-mart>
   <emoji-mart [i18n]="{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }"></emoji-mart>-->
 </div>
 
-<div *ngIf="userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined && (postOfUser === null || postOfUser === undefined || postsOfUser.length === 0)" class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>
-          Post Nr
-        </th>
-        <th>
-          Posted Text
-        </th>
-        <th>
-          Posted Emoji
-        </th>
-        <th>
-          Posted By
-        </th>
-        <th>
-          Posted on
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let post of allPosts">
-        <td>
-          {{post.postID}}
-        </td>
-        <td>
-          {{post.postText}}
-        </td>
-        <td>
-          {{post.postEmoji}}
-        </td>
-        <td>
-          {{post.userName}}
-        </td>
-        <td>
-          {{post.date}}
-        </td>
-        <td>
-          <button (click)="flowUser()">Follow user</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+
+<div *ngIf="userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined" class="content">
+  <div class="wrapper">
+    <div class="table-responive tableDesign">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>
+              Posted text...
+            </th>
+            <th>
+              Posted emoji...
+            </th>
+            <th>
+              Posted by..
+            </th>
+            <th>
+              Posed on..
+            </th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let post of displayPosts">
+          <tr>
+            <td>
+              {{post.postText}}
+            </td>
+            <td>
+              {{post.emojiName}}
+            </td>
+            <td>
+              {{post.userName}}
+            </td>
+            <td>
+              {{post.date}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
 </div>
 
-<!-- Table which is shown, if a user search for posts of a user -->
-<div *ngIf="userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined && (postsOfUser !== null && postsOfUser !== undefined && postsOfUser.length >  0)" class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>
-          Post Nr
-        </th>
-        <th>
-          Posted Text
-        </th>
-        <th>
-          Posted Emoji
-        </th>
-        <th>
-          Posted By
-        </th>
-        <th>
-          Posted on
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let post of postsOfUser">
-        <td>
-          {{post.postID}}
-        </td>
-        <td>
-          {{post.postText}}
-        </td>
-        <td>
-          {{post.postEmoji}}
-        </td>
-        <td>
-          {{post.userName}}
-        </td>
-        <td>
-          {{post.date}}
-        </td>
-        <td>
-          <button (click)="flowUser()">Follow user</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
 

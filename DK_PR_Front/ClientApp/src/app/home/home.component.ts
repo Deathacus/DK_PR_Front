@@ -25,6 +25,7 @@ export class HomeComponent {
   public postsOfUser: Post[] = [];
   public allUsers: User[] = [];
   private _searchValue: string = "";
+  public displayEmojis: boolean = false;
 
   ngOnInit() {
     this.logedInUser = this.userService.logedInUser;
@@ -108,6 +109,11 @@ export class HomeComponent {
     if (!userExists)
       alert("This user doesn't exist");
     
+  }
+
+  public emojiSelection() {
+
+    this.displayEmojis = !this.displayEmojis;
   }
 
   public deleteSearchingForUserPosts() {

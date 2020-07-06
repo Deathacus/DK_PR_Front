@@ -7,7 +7,7 @@
   <button (click)="postIt()">Post</button>
 </div>
 
-<div class="searchBox">
+<div *ngIf="userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined" class="searchBox">
   <div class="col-xs-6">
     <div class="input-group mb-3" style="padding-top: 32px">
       <div class="input-group-prepend">
@@ -18,7 +18,7 @@
   </div>
 </div>
 
-<div class="searchBox">
+<div *ngIf="userService !== null && userService !== undefined && userService.logedInUser !== null && userService.logedInUser !== undefined" class="searchBox">
   <div class="col-xs-6">
     <div class="input-group mb-3" style="padding-top: 32px">
       <div class="input-group-prepend">

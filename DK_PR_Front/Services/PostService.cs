@@ -29,12 +29,6 @@ namespace DK_PR_Front.Services
             _post.InsertOne(post);
             return post;
         }
-
-        //public Recipe Get(int nr)
-        //{
-        //    return _recipes.Find<Recipe>(recipe => recipe.Nr == nr).FirstOrDefault();
-        //}
-        //Test Kommentar
     }
 }
 

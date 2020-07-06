@@ -15,9 +15,6 @@ import { PostService } from './service/post.service';
 import { AngularNeo4jModule } from 'angular-neo4j';
 import { UserpageComponent } from './user/userpage.component';
 
-//import { EmojiModule } from 'angular-emoji/dist';
-//import { EmojiPickerModule } from 'ng-emoji-picker';
-//import { NgxEmojiPickerModule } from 'ngx-emoji-picker';
 
 @NgModule({
   declarations: [

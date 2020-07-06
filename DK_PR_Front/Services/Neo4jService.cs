@@ -13,7 +13,7 @@ namespace DK_PR_Front.Services
 
         public Neo4jService()
         {
-            neo4JConfig = new Neo4jConfigClass("bolt://localhost:7687", "admin", "admin123");
+            neo4JConfig = new Neo4jConfigClass("bolt://localhost:11003", "admin", "admin123");
             neo4JController = new Neo4jController();
         }
         public void CreateUser(string username, string password)

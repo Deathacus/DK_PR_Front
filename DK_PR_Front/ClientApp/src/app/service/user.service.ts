@@ -46,7 +46,7 @@ export class UserService {
     });
   }
 
-  public getFollowers(userName: string) {
+  public getFollowers(userName: string ) {
     return this.http.get<User[]>('api/user/' + userName);
   }
 }

@@ -61,7 +61,7 @@ namespace DK_PR_Front.Neo4jControllers
             using (var session = Neo4jConfigClass.driver.Session())
             {
 
-                string query = "MATCH(p:User { Username: '" + userName + "'}) -[r: Follows]->(k) RETURN k.Username AS username, k.Password AS password";
+                string query = "MATCH(p:User { Username: '" + userName + "'}) <-[r: Follows]- (k) RETURN k.Username AS username, k.Password AS password";
                 var result = session.Run(query);
                 foreach (var record in result)
                 {

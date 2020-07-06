@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
 
@@ -26,6 +27,8 @@ export class HomeComponent {
   public allUsers: User[] = [];
   private _searchValue: string = "";
   public displayEmojis: boolean = false;
+  private _searchUserValue: string = "";
+  public displayUsers: User[] = [];
 
   ngOnInit() {
     this.logedInUser = this.userService.logedInUser;
@@ -42,7 +45,6 @@ export class HomeComponent {
           this.allUsers = u;
         });
     });
-
   }
 
   public get searchValue(): string {
@@ -52,6 +54,25 @@ export class HomeComponent {
   public set searchValue(val: string) {
     this._searchValue = val;
     this.performSearch();
+  }
+
+  public get searchUserValue(): string {
+    return this._searchUserValue;
+  }
+
+  public set searchUserValue(val: string) {
+    console.log("value " + val);
+    this._searchUserValue = val;
+    if (val.length > 0)
+      this.performUserSearch();
+    else
+      this.displayUsers = [];
+  }
+
+  public performUserSearch() {
+    this.displayUsers = this.allUsers;
+    this.displayUsers = this.allUsers.filter(u => u.username.toLowerCase().indexOf(this.searchUserValue.toLowerCase()) != -1);
+    this.displayUsers.forEach(u => console.log(u.username));
   }
 
   public performSearch() {
@@ -82,6 +103,7 @@ export class HomeComponent {
         this.allPosts = [...this.allPosts];
         this.displayPosts = [...this.displayPosts];
         console.log("posted:" + this.postText);
+        this.postText = "";
       }
       else {
         alert('Your post failed');
@@ -91,7 +113,7 @@ export class HomeComponent {
 
   }
 
-  public searchForPostOfUser() {
+  public searchForPostOfUsersearchForPostOfUser() {
     this.postsOfUser = [];
     let userExists = false;
     for (let u of this.allUsers) {
@@ -111,6 +133,10 @@ export class HomeComponent {
       alert("This user doesn't exist");
     
   }
+
+  //public searchForUser() {
+  //  this.
+  //}
 
   public emojiSelection() {
 

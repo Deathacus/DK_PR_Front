@@ -5,20 +5,21 @@
   <h2>Followers of {{userOfPage.username}}</h2>
   <div class="wrapper">
     <div class="table-responive tableDesign">
-      <table class="table table-striped">
+      <table *ngIf="followers !== null && followers !== undefined" class="table table-striped">
         <thead>
           <tr>
             <th>
               Followers
             </th>
             <th>
-              <button (click)="wantToFollowUser()">Follow {{userOfPage.username}}</button>
+              <button *ngIf="displayFollow" class="btn btn-default col-xs-10 col-xs-offset tableBtn" (click)="wantToFollowUser()">Follow {{userOfPage.username}}</button>
+              <button *ngIf="displayFollow === false" class="btn btn-default col-xs-10 col-xs-offset tableBtn" (click)="unfollowUser()">Unfollow {{userOfPage.username}}</button>
             </th>
-
           </tr>
         </thead>
-        <tbody >
-          <tr>
+        <tbody>
+          <tr *ngFor="let f of followers">
+            {{f.username}}
           </tr>
         </tbody>
       </table>

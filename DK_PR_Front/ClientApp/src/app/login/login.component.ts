@@ -30,25 +30,18 @@ export class LoginComponent implements OnInit {
 
     this.userService.getAllUsers().toPromise().then(u => {
       this.allUsers = u;
-      console.log(this.allUsers[1].username);
     });
     
   }
 
 
   public checkUserData() {
-    console.log(this.allUsers);
     let count: number = 0;
     for (let u of this.allUsers) {
       count++;
-      console.log("Eingabe: " + this.userName);
-      console.log("Eingabe: " + this.password);
-      console.log("ArrayName: " + u.username);
-      console.log("ArrayPw: " + u.password);
       if (u.username === this.userName) {
         if (this.password === u.password) {
           this.userService.logedInUser = u;
-          console.log("eingeloggt ist: " + this.userService.logedInUser);
           alert("Login in succesfully!");
           this.router.navigateByUrl('');
           break;
@@ -61,9 +54,6 @@ export class LoginComponent implements OnInit {
       else if (this.allUsers.length === count)
         alert('Sorry this user does not exist!');
     }
-    
-    console.log(this.userName);
-    console.log(this.password);
     this.password = "";
     this.userName = "";
   }

@@ -33,7 +33,6 @@ export class HomeComponent {
   ngOnInit() {
     this.logedInUser = this.userService.logedInUser;
     this.userService.wantToFollow = undefined;
-    console.log("LogedInUser is now: " + this.userService.logedInUser)
     this.postService
       .getAllPosts()
       .toPromise()
@@ -61,7 +60,6 @@ export class HomeComponent {
   }
 
   public set searchUserValue(val: string) {
-    console.log("value " + val);
     this._searchUserValue = val;
     if (val.length > 0)
       this.performUserSearch();
@@ -84,10 +82,7 @@ export class HomeComponent {
   public select($event) {
     this.userPicked = $event.emoji;
     this.postText = this.postText + this.userPicked.native;
-    console.log($event);
-    console.log(this.userPicked);
     this.pickedEmoji = this.userPicked.native;
-    console.log("native prop: " + this.userPicked.native.toString());
 
   }
 
@@ -102,7 +97,6 @@ export class HomeComponent {
         this.displayPosts = this.allPosts;
         this.allPosts = [...this.allPosts];
         this.displayPosts = [...this.displayPosts];
-        console.log("posted:" + this.postText);
         this.postText = "";
       }
       else {

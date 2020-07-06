@@ -12,8 +12,8 @@
               Followers
             </th>
             <th>
-              <button *ngIf="displayFollow" class="btn btn-default col-xs-10 col-xs-offset tableBtn" (click)="wantToFollowUser()">Follow {{userOfPage.username}}</button>
-              <button *ngIf="displayFollow === false" class="btn btn-default col-xs-10 col-xs-offset tableBtn" (click)="unfollowUser()">Unfollow {{userOfPage.username}}</button>
+              <button *ngIf="displayFollow && (userService.logedInUser !== userService.wantToFollow)" class="btn btn-default col-xs-10 col-xs-offset tableBtn" (click)="wantToFollowUser()">Follow {{userOfPage.username}}</button>
+              <button *ngIf="displayFollow === false && (userService.logedInUser !== userService.wantToFollow)" class="btn btn-default col-xs-10 col-xs-offset tableBtn" (click)="unfollowUser()">Unfollow {{userOfPage.username}}</button>
             </th>
           </tr>
         </thead>

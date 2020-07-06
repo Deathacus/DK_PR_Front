@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { User } from '../models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-menu',
@@ -8,12 +9,9 @@ import { User } from '../models/user';
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
-  constructor(public logedInUserService: UserService) { }
+  constructor(public logedInUserService: UserService, private router: Router) { }
 
   public logedInUser: User;
-  //ngOnInit() {
-  //  this.logedInUser = this.logedInUserService.logedInUser;
-  //}
 
   isExpanded = false;
 
@@ -27,5 +25,10 @@ export class NavMenuComponent {
 
   public logOut() {
     this.logedInUserService.logedInUser = undefined;
+  }
+
+  public rout() {
+    this.logedInUserService.wantToFollow = this.logedInUserService.logedInUser;
+    this.router.navigateByUrl('/userpage');
   }
 }

@@ -31,7 +31,6 @@ export class RegistrationComponent {
     this.userService.getAllUsers().toPromise().then(u => {
       this.allUsers = u;
     });
-    console.log(this.allUsers);
   }
 
 
@@ -48,8 +47,6 @@ export class RegistrationComponent {
     }
     //if username doesn't already exist check if entered data okay
     if (userOkay) {
-      console.log(this.password);
-      console.log(this.passwordAgain);
 
       if (this.password.length < 4) {
         this.userName = "";
@@ -69,13 +66,8 @@ export class RegistrationComponent {
         }
         //else create user on data base and set user okay to true
         else {
-          console.log("username: " + this.userName);
-          console.log("password: " + this.password);
-          console.log("passwordCheck: " + this.passwordAgain);
           this.userOkay = true;
-          console.log("boolean" + this.userOkay);
 
-          
           let newUser = new User();
           newUser.setUser(this.userName, this.password);
           this.userService.logedInUser = newUser;

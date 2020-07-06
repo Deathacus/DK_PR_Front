@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-userpage',
   templateUrl: './userpage.component.html',
+  styleUrls: ['./userpage.component.css']
 })
 export class UserpageComponent {
 
@@ -25,7 +26,6 @@ export class UserpageComponent {
     this.userService.getFollowers(this.userOfPage.username).toPromise().then(f => {
       this.followers = f;
       this.followers = [...this.followers];
-      console.log(this.followers);
       for (let f of this.followers) {
         if (this.userService.logedInUser.username === f.username) {
           this.displayFollow = false;
@@ -48,7 +48,6 @@ export class UserpageComponent {
         this.userService.getFollowers(this.userOfPage.username).toPromise().then(res => {
           this.followers = res;
           this.followers = [...this.followers];
-          console.log(this.followers);
           this.displayFollow = false;
         });
       }
@@ -72,7 +71,6 @@ export class UserpageComponent {
         this.userService.getFollowers(this.userOfPage.username).toPromise().then(res => {
           this.followers = res;
           this.followers = [...this.followers];
-          console.log(this.followers);
           this.displayFollow = true;
         });
       }

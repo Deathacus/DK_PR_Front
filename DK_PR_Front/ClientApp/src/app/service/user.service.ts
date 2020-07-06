@@ -7,8 +7,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
-export class UserService
-{
+export class UserService {
   constructor(private http: HttpClient) { }
 
   public logedInUser: User;
@@ -25,10 +24,11 @@ export class UserService
         .toPromise().then(result => resolve(true))
         .catch(reason => reject(reason));
     });
-    
+
   }
 
   public followUser(user: User[]): Promise<boolean> {
+    console.log("followUser wurde aufgerufen, killah!");
     return new Promise((resolve, reject) => {
       this.http
         .post<User>('api/user/followUser', user)
@@ -46,11 +46,8 @@ export class UserService
     });
   }
 
-  public getFollowers(user: User) {
-    return this.http.get<User[]>('api/user/getFollowers/' + user);
+  public getFollowers(userName: string) {
+    return this.http.get<User[]>('api/user/' + userName);
   }
-
-
-
 }
 

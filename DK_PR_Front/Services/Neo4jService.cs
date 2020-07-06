@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DK_PR_Front.Models;
 using DK_PR_Front.Neo4jConfig;
 using DK_PR_Front.Neo4jControllers;
@@ -12,7 +13,7 @@ namespace DK_PR_Front.Services
 
         public Neo4jService()
         {
-            neo4JConfig = new Neo4jConfigClass("bolt://localhost:11003", "admin", "admin123");
+            neo4JConfig = new Neo4jConfigClass("bolt://localhost:7687", "admin", "admin123");
             neo4JController = new Neo4jController();
         }
         public void CreateUser(string username, string password)
@@ -39,9 +40,9 @@ namespace DK_PR_Front.Services
             neo4JController.UnfollowersUser(follower, wantToFollow);
         }
 
-        public List<User> GetFollowers(User user)
+        public List<User> GetFollowers(string userName)
         {
-            return neo4JController.GetFollowers(user);
+            return neo4JController.GetFollowers(userName);
         }
     }
 }

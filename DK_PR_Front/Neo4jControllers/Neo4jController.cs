@@ -41,7 +41,7 @@ namespace DK_PR_Front.Neo4jControllers
             List<User> users = new List<User>();
             using (var session = Neo4jConfigClass.driver.Session())
             {
-                string query = "MATCH (n:User {Name: '" + follower.Username + "'}), (m:User {Name: '" + wantToFollow.Username + "'})  CREATE (n) -[r:Follows]-> (m) RETURN n,m,r";
+                string query = "MATCH (n:User), (m:User) WHERE n.Username = '" + follower.Username + "' AND m.Username = '" + wantToFollow.Username + "' CREATE (n) -[r:Follows]-> (m) RETURN n,m,r";
                 var result = session.Run(query);
             }
         }
@@ -51,21 +51,21 @@ namespace DK_PR_Front.Neo4jControllers
             List<User> users = new List<User>();
             using (var session = Neo4jConfigClass.driver.Session())
             {
-                var result = session.Run("MATCH (n:User {Name: '" + follower.Username + "'}) -[r:Follows]-> (m:User {Name: '" + wantToFollow.Username + "'})  DELETE r RETURN n,m,r");
+                var result = session.Run(("MATCH (n:User {Username: '" + follower.Username + "'}) -[r:Follows]-> (m:User {Username: '" + wantToFollow.Username + "'})  DELETE r RETURN n,m,r"));
             }
         }
 
-        public List<User> GetFollowers(User user)
+        public List<User> GetFollowers(string userName)
         {
             List<User> users = new List<User>();
             using (var session = Neo4jConfigClass.driver.Session())
             {
 
-                string query = "MATCH(p { Name: '" + user.Username + "'}) -[r: Follows]->(k) RETURN k.Name AS name, k.Password AS password";
+                string query = "MATCH(p:User { Username: '" + userName + "'}) -[r: Follows]->(k) RETURN k.Username AS username, k.Password AS password";
                 var result = session.Run(query);
                 foreach (var record in result)
                 {
-                    var username = $"{record["name"].As<String>()}";
+                    var username = $"{record["username"].As<String>()}";
                     var password = $"{record["password"].As<String>()}";
                     users.Add(new User(username, password));
                 }

@@ -45,10 +45,10 @@ namespace DK_PR_Front.Controllers
             _neoService.UnfollowUser(user);
         }
         [HttpGet]
-        [Route("api/user/getFollowers")]
-        public List<User> getFollowers(User user)
+        [Route("{userName}")]
+        public List<User> getFollowers(string userName)
         {
-            return _neoService.GetFollowers(user);
+            return _neoService.GetFollowers(userName);
         }
     }
 }
